@@ -8,7 +8,7 @@ publicly.
 
 ## Contents
 
-- Édouard Wolff, [Deux Nocturnes, Op.27](pdf/Wolff - Deux Nocturnes, Op.27.pdf) ([LilyPond sources]((src/wolff-nocturnes-op27/)) | [Work page on IMSLP](https://imslp.org/wiki/2_Nocturnes,_Op.27_(Wolff,_%C3%89douard)))
+- Édouard Wolff, Deux Nocturnes, Op.27 ([PDF](pdf/Wolff - Deux Nocturnes, Op.27.pdf) | [.ly]((src/wolff-nocturnes-op27/)) | [Work page on IMSLP](https://imslp.org/wiki/2_Nocturnes,_Op.27_(Wolff,_%C3%89douard)))
 
 ## License
 
