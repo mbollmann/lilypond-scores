@@ -1,4 +1,4 @@
-*.pdf
+src/**/*.pdf
 *.ps
 *.midi
 *.mid
