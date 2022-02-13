@@ -20,9 +20,13 @@
       }
       "via"
       \with-url "https://www.lilypond.org/" {
-        #(format #f "LilyPond ~a"
+        #(format #f "LilyPond ~a."
            (lilypond-version)
            )
+      }
+      "Released under"
+      \with-url "https://creativecommons.org/licenses/by/4.0/" {
+        "CC-BY 4.0."
       }
     }
   }
@@ -55,14 +59,18 @@
   \secondNocturne
 }
 
-\markuplist {
+\markuplist \wordwrap-lines {
   \vspace #3
   "Based on the score published by Maurice Schlesinger, Paris, ca. 1839, available from IMSLP here:"
 
-  \vspace #0.5
   \override #'(font-family . typewriter) {
     \with-url
     "https://imslp.org/wiki/Special:ReverseLookup/32789"
     "https://imslp.org/wiki/Special:ReverseLookup/32789"
   }
+}
+
+\markuplist \wordwrap-lines {
+  \vspace #1
+  This typeset attempts to reproduce the aforementioned edition faithfully; in particular, no editorial changes from this edition have been made.
 }

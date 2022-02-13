@@ -295,7 +295,7 @@ upperTwo = \context Staff \relative c'{
   <es,,, bes>2 <f es a,!> r^\fermata \stemNeutral
   \unsetCadenza
                                 % [Larghetto]
-  s8 \acciaccatura { s8 } r4 << { des des des } \context Voice="bc" { \bassChords <bes f> <bes f> <bes f> } >> |
+  s8 r4 << { des des des } \context Voice="bc" { \bassChords <bes f> <bes f> <bes f> } >> |
   r4 << { des des des } \context Voice="bc" { \bassChords <bes f> <bes f> <bes f> } >> |
   r4 << { des des <des bes> } \context Voice="bc" { \bassChords <bes f> <bes f> s } >> |
   r4 <bes des f> <bes des f> <bes des f> |
@@ -528,7 +528,7 @@ lowerTwo = \context Staff \relative c{
   \unsetCadenza
                                 % [Larghetto]
   \tupletSpan 4 s8
-  \acciaccatura { \stemUp es,8 \stemDown } bes'8 c des2_> c8 bes |
+  \acciaccatura { \stemUp es,8 \stemDown } bes'8[ c] des2_> c8[ bes] |
   a bes f4 ~ f8 f \acciaccatura { \stemUp as8 \stemDown } ges8 f |
   bes c des4 ~ \tuplet 3/2 { des8 es f as ges f } |
   f2._> f8 ges |
