@@ -11,31 +11,45 @@
   title = "Deux Nocturnes"
   composer = \markup { \caps { Édouard Wolff } }
   opus = "Op.27"
+  %copyright = \markup {
+  %  \pad-to-box #'(0 . 0) #'(0 . 3)
+  %  \line {
+  %    "Typeset in 2005 (rev. 2022) by"
+  %    \with-url "https://github.com/mbollmann/lilypond-scores/" {
+  %      "Marcel Bollmann."
+  %    }
+  %    "Released under"
+  %    \with-url "https://creativecommons.org/licenses/by/4.0/" {
+  %      "CC-BY 4.0."
+  %    }
+  %  }
+  %}
   tagline = \markup {
     \pad-to-box #'(0 . 0) #'(0 . 3)
     \line {
-      "Typeset in 2005 (rev. 2022) by"
-      \with-url "mailto:marcel@bollmann.me" {
-        "Marcel Bollmann"
+      "Typeset via"
+      \with-color "dodgerblue" {
+        \with-url "https://www.lilypond.org/" {
+          #(format #f "LilyPond ~a."
+            (lilypond-version)
+            )
+        }
       }
-      "via"
-      \with-url "https://www.lilypond.org/" {
-        #(format #f "LilyPond ~a."
-           (lilypond-version)
-           )
-      }
-      "Released under"
-      \with-url "https://creativecommons.org/licenses/by/4.0/" {
-        "CC-BY 4.0."
+      "Source files available from"
+      \with-color "dodgerblue" {
+        \with-url "https://github.com/mbollmann/lilypond-scores/" {
+          "github.com/mbollmann/lilypond-scores."
+        }
       }
     }
   }
 }
 
 \paper {
-  ragged-last-bottom = ##t
+  ragged-last-bottom = ##f
   top-margin = 1\cm
-  bottom-margin = 1.5\cm
+  bottom-margin = 1\cm
+  footnote-separator-markup = \markup \null
 }
 
 \layout {
@@ -46,8 +60,39 @@
   }
 }
 
-\include "nocturne-op27-1.ly"
-\include "nocturne-op27-2.ly"
+\include "nocturne-op27-1.ily"
+\include "nocturne-op27-2.ily"
+
+\markup {
+  \footnote ""
+  {
+    \pad-to-box #'(0 . 0) #'(0 . 3)
+    \wordwrap {
+      "Based on the score published by Maurice Schlesinger, Paris, ca. 1839"
+      "(available from"
+      \concat {
+        \with-color "dodgerblue" {
+          \with-url
+          "https://imslp.org/wiki/Special:ReverseLookup/32789"
+          "IMSLP"
+        }
+        ")."
+      }
+      % { This typeset attempts to reproduce the score faithfully, with minimal editorial changes. }
+    }
+    \pad-to-box #'(0 . 0) #'(0 . 3)
+    \wordwrap {
+      "Typeset in 2005 (rev. 2022) by"
+      \with-url "https://github.com/mbollmann/lilypond-scores/" {
+        "Marcel Bollmann."
+      }
+      "Released under"
+      \with-url "https://creativecommons.org/licenses/by/4.0/" {
+        "CC-BY 4.0."
+      }
+    }
+  }
+}
 
 \score {
   \firstNocturne
@@ -57,20 +102,4 @@
     opus = " "
   }
   \secondNocturne
-}
-
-\markuplist \wordwrap-lines {
-  \vspace #3
-  "Based on the score published by Maurice Schlesinger, Paris, ca. 1839, available from IMSLP here:"
-
-  \override #'(font-family . typewriter) {
-    \with-url
-    "https://imslp.org/wiki/Special:ReverseLookup/32789"
-    "https://imslp.org/wiki/Special:ReverseLookup/32789"
-  }
-}
-
-\markuplist \wordwrap-lines {
-  \vspace #1
-  This typeset attempts to reproduce the aforementioned edition faithfully; in particular, no editorial changes from this edition have been made.
 }

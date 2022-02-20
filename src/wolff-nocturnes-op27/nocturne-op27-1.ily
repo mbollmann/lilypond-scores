@@ -1,5 +1,8 @@
 \version "2.23.4"
 
+% NOTE: This piece was originally typeset in 2005 using LilyPond 2.6.0; it
+% likely uses many layout hacks that are not good practice anymore in 2022...
+
 lento = \markup { \bold \large { Lento } }
 piuMosso = \markup { \bold { Più mosso } }
 tempoI = \markup { \bold { Tempo I } }
@@ -280,7 +283,7 @@ lowerOne = \context Staff \relative c{
 
 firstNocturne = \context PianoStaff
   <<
-    \set PianoStaff.instrumentName = \markup { \number { 1 } \bold \larger \super "er" }
+    \set PianoStaff.instrumentName = \markup { \concat { \number { 1 } \bold \larger \super "er" } }
     \context Staff = "treble" <<
       \globalOne
       \clef violin

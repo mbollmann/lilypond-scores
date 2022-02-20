@@ -1,5 +1,8 @@
 \version "2.23.4"
 
+% NOTE: This piece was originally typeset in 2005 using LilyPond 2.6.0; it
+% likely uses many layout hacks that are not good practice anymore in 2022...
+
 larghetto = \markup { \bold \large { Larghetto } }
 piuMossoAgitato = \markup { \bold { Più mosso agitato } }
 tempoI = \markup { \bold { Tempo I } }
@@ -388,8 +391,8 @@ upperTwo = \context Staff \relative c'{
   <es' bes ges es>8. <f f,>16 \voiceOne ges2^> \oneVoice <f bes, f>8 <es es,> |
   <d bes ges d>8. <es es,>16 \ottava #0 \voiceOne bes2. \oneVoice | \ottava #1
   <es bes ges es>8. <f f,>16 \voiceOne ges2^> \oneVoice <f bes, f>8 <es es,> |
-  <d bes ges d>8. <es es,>16 \ottava #0 \voiceOne bes2. \oneVoice \break | \clef "violin^8"
-  \revert Staff.OttavaBracket.extra-offset
+  <d bes ges d>8. <es es,>16 \ottava #0 \voiceOne bes2. \oneVoice \break |
+  \revert Staff.OttavaBracket.extra-offset \ottava #1
   <f' es c f,>8 <ges es c ges> <f es c f,>4.-> <ges des bes ges>8 <f des bes f> <ges des bes ges> |
   <f c a f> <ges c, a ges> <f c a f>4-> <f des bes f>8 <bes bes,> <c c,> <des des,> |
   <c bes ges c,>-> <bes bes,>-> <as as,>-> <ges ges,>-> <f f,>16 <ges ges,> <b, b,> <c c,>
@@ -404,7 +407,7 @@ upperTwo = \context Staff \relative c'{
   \tuplet 3/2 { <f f,>8 <f e> <f es> <f d> <f des> <f c> <f ces> <f bes,> <f a,> <f as,> <e g,> <es ges,> } |
   \tuplet 3/2 { <d f,> <des fes,> <c es,> <b d,> <bes des,> <a c,> <as ces,> <g bes,> <ges beses,> <f as,> <e g,> <es ges,> } \break |
   <des bes f>8 <ges bes es>[ <f bes des> <es ges c>] <des ges bes> <ges bes es> <f bes des> <es ges c> |
-  <des ges bes> \clef violin <es bes ges>[ <des bes f> <c ges es>] <bes ges des> <es, bes>-> <des bes>-> <c ges>-> |
+  <des ges bes> \ottava #0 <es bes ges>[ <des bes f> <c ges es>] <bes ges des> <es, bes>-> <des bes>-> <c ges>-> |
   \revert TupletBracket.transparent
                                 % [Tempo I]
   <bes ges>2 <des f,> |
@@ -648,7 +651,7 @@ lowerTwo = \context Staff \relative c{
 
 secondNocturne = \context PianoStaff
   <<
-    \set PianoStaff.instrumentName = \markup { \number { 2 } \bold \larger \super "e" }
+    \set PianoStaff.instrumentName = \markup { \concat { \number { 2 } \bold \larger \super "e" } }
     \context Staff = "treble" <<
       \globalTwo
       \clef violin
