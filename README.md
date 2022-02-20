@@ -8,6 +8,8 @@ publicly.
 
 ## Contents
 
+- Baldassare Galuppi, Keyboard Sonata, I.28 ([PDF](pdf/Galuppi-%20Keyboard%20Sonata,%20I.28.pdf) | [LilyPond sources]((src/galuppi-sonata-28/)) | [Work page on IMSLP](https://imslp.org/wiki/Special:ReverseLookup/446610) | [Alternative edition on IMSLP](https://imslp.org/wiki/Special:ReverseLookup/32789))
+
 - Édouard Wolff, Deux Nocturnes, Op.27 ([PDF](pdf/Wolff%20-%20Deux%20Nocturnes,%20Op.27.pdf) | [LilyPond sources]((src/wolff-nocturnes-op27/)) | [Work page on IMSLP](https://imslp.org/wiki/2_Nocturnes,_Op.27_(Wolff,_%C3%89douard)))
 
 ## License
