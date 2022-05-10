@@ -291,9 +291,9 @@ upperTwo = \context Staff \relative c'{
   \tieUp <ges bes,>2 ~ ges4 <f es a,!>2 r^\fermata \tieNeutral
   s2 s8 r2*1/2 s8 s2
   r8 des16[^\( c bes] \once \override Beam.positions = #'(2.0 . 5.0)
-  a[ c es ges a c es des c bes]\) \stemUp \once \override Beam.positions = #'(4.35 . 3.25)
-  a[^\( c es \ottava #1 ges a c es des c bes]\)
-  a[^\( c es ges a c es des]\) \ottava #0
+  a![ c es ges a! c es des c bes]\) \stemUp \once \override Beam.positions = #'(4.35 . 3.25)
+  a[^\( c es \ottava #1 ges a! c es des c bes]\)
+  a[^\( c es ges a! c es des]\) \ottava #0
   s r^\fermata s
   <es,,, bes>2 <f es a,!> r^\fermata \stemNeutral
   \unsetCadenza
@@ -304,7 +304,7 @@ upperTwo = \context Staff \relative c'{
   r4 <bes des f> <bes des f> <bes des f> |
   r4 << { \voiceOne <a c> <a c> <as ces> | <as ces> } \\ { \voiceOne \tieUp f' ~ f f ~ | f } >>
   e2^> << { \tieUp es4^> ~ | es } \context Voice="bc" { \bassChords <c bes>4 | <c a> } >>
-  des2^> << { \tieUp c4^> ~ | c c2^> ~ c4 } \context Voice="bc" { \bassChords <bes ges>4 | <bes ges> s2 <as es>4 } >> |
+  des2^> << { \tieUp c4^> ~ | c c2^> ~ c4 } \context Voice="bc" { \bassChords <bes ges>4 | <bes ges> s2 <a es>4 } >> |
   << { des4 des des des } \context Voice="bc" { \bassChords <bes f des>4 <bes f> <bes f> <bes f> } >> |
   r4 << { des des des } \context Voice="bc" { \bassChords <bes f> <bes f> <bes f> } >> |
   r4 << { des des <des bes> } \context Voice="bc" { \bassChords <bes f> <bes f> s } >> |
@@ -316,7 +316,7 @@ upperTwo = \context Staff \relative c'{
   ges2. f8. es16 |
   ges2. f8. es16 |
   ges2 f ~ |
-  f4 d2 es4 |
+  f4 des2 es4 |
   \oneVoice r4 \voiceOne as2. ~ |
   as4 s as2 |
   des4 bes2 as4 |
@@ -383,9 +383,9 @@ upperTwo = \context Staff \relative c'{
   <des ges, des>8. <c c,>16 <c ges c,>4 r8. <bes bes,>16 <bes ges bes,>8. <c c,>16 |
   <bes ges es bes>8. <as as,>16 <as ges es as,>4-> r8. <as as,>16 <as d, ces as>8. <bes bes,>16 |
   <as d, ces as>8. <g g,>16 <ges es bes ges>4-> r8. <f es c f,>16 <e c e,>8. <f es c f,>16 \break |
-  <bes f des bes>8. <c c,>16 \voiceOne d2^> \oneVoice <c f, c>8 <bes bes,> |
+  <bes f des bes>8. <c c,>16 \voiceOne des2^> \oneVoice <c f, c>8 <bes bes,> |
   <a f des a>8. <bes f des bes>16 \voiceOne f2.^> \oneVoice |
-  <bes f des bes>8. <c c,>16 \voiceOne d2^> \oneVoice <c f, c>8 <bes bes,> |
+  <bes f des bes>8. <c c,>16 \voiceOne des2^> \oneVoice <c f, c>8 <bes bes,> |
   \override Staff.OttavaBracket.extra-offset = #'(0 . 0.4)
   <a f des a>8. <bes f des bes>16 \voiceOne f2.^> \oneVoice \break | \ottava #1
   <es' bes ges es>8. <f f,>16 \voiceOne ges2^> \oneVoice <f bes, f>8 <es es,> |
@@ -523,7 +523,7 @@ lowerTwo = \context Staff \relative c{
   <bes bes,>8[ <c c,>] <des des,>4-> ~ \tuplet 3/2 { <des des,>8[ <c c,> <bes bes,>] }
   \tuplet 3/2 { <a! a,!>8[ <bes bes,> <ges ges,>] } <f f,>2->^\fermata
   r8 <bes f'>16[\( es des] \once \override Beam.positions = #'(-3.0 . 0.2)
-  c[ es ges a c es ges <f bes,> es des]\) % \once \override Beam.positions = #'(0.0 . 6.0)
+  c[ es ges a! c es ges <f bes,> es des]\) % \once \override Beam.positions = #'(0.0 . 6.0)
   \stemDown c[_\( es ges \change Staff="treble" a c es ges <f bes,> es des]\)
   c[_\( es ges a c es ges <f bes,>]\)
   \change Staff="bass" \stemNeutral s r^\fermata s
