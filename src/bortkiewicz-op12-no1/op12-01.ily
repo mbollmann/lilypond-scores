@@ -106,20 +106,26 @@ upperA = {
     r4 \fromBass g8.( fis16 e4) \fromBassEnd |
     r8 \fromBass g8\( b, e g b |
     e2.--\) ~ |
-    e8 g[\( \acciaccatura { fis16 g } fis8 e g, a] |
+    e8 \once \override PhrasingSlur.height-limit = #4.0 g[\( \acciaccatura { fis16 g } fis8 e g, a] |
     b8[ d \acciaccatura { c16 d } c8 b e, fis] \fromBassEnd | 
     \voiceOne s4 g4. dis8 |
     dis8[ fis] e\) \oneVoice r8 r4 | % [8]
     r4 \fromBass g( e) \fromBassEnd |
     r4 \fromBass g8.( fis16 e4) \fromBassEnd |
-    r8 \fromBass g8\( b, e g b |
-    e2.\) ~ |
+    r8 \fromBass g8( b, e g b |
+    e2.) ~ |
     e8 fis\( g g, a ais |
     b8 d c b e, fis \fromBassEnd |
     \voiceOne s4 g4. dis8 |
     dis8[ fis] e\) \oneVoice r8 r4 | % [16]
-    f4( \fromBass gis,4.) f'8\( \fromBassEnd |
-    g,8 f' \fromBass e4\) r \fromBassEnd |
+    f4( \fromBass gis,4.) 
+    % manual fix for a buggy broken (cross-line) slur
+           \shape #'(
+             ((0 . 0) (0.5 . 1.2) (2.2 . 1.5) (3 . 1))
+             ((1 . 1) (1 . 0) (1 . 0.5) (0 . 0))
+           ) Slur
+           f'8^( | \break
+    g,8 f' e4) r \fromBassEnd |
     g4( \fromBass ais,4.) g'8( \fromBassEnd |
     a,8 g' \fromBass fis4) r \fromBassEnd |
     a4( \fromBass c,4.) a'8( \fromBassEnd |
@@ -179,7 +185,7 @@ upperA = {
     r8 e''-. \acciaccatura e8 dis8[( b] d4) |
     r8 cis-. \acciaccatura cis8 c8[( g] b4) |
     r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-    g fis cis dis e4\)^\fermata |
+    g fis cis dis e4\)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } } |
   }
   } % [71] Tempo I
   } % [end of page 6 in original score]
@@ -382,7 +388,7 @@ lower = {
     \clef treble
     << { cis'4-. c-. b-. | ais( <a fis> 
          \once \override TextScript.outside-staff-priority = #2500
-         <b g>)^\fermata_\markup \center-align { \italic "   senza rep." } } \\
+         <b g>)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } }_\markup \center-align { \italic "   senza rep." } } \\
        { e,2. ~ e2. } >> | \clef bass
   }
   }
@@ -489,6 +495,8 @@ dynamics = {
   s8\< s s2\! |
   s2 s4\> |
   s4 s8\! s8 s4 | % [63] vivace
+  \once \override Score.Footnote.annotation-line = ##f
+  \footnote \markup { \small { † } } #'(0.1 . 8) \markup { \super † Expressions in braces only on \italic { D.S. } repeat. } Staff.BarLine
   \repeat volta 2 {
   s2. | 
   s2.*5 |
