@@ -15,7 +15,7 @@ upperA = {
     g4. g4 g8 |
     g8( bes ges f4) bes,8( |
     g'4.) \voiceOne c4 c8 |
-    g4.( g'8) \oneVoice r8 \voiceOne bes,8( |
+    g4.( g'8) \oneVoice r8 \voiceOne \once \override Slur.height-limit = #3 bes,8( |
     <g' g,>4. <f f,>4) bes,8( |
     bes'4. es,4) bes8( |
     <g' g,>4. <f f,>4) bes,8( |
@@ -24,8 +24,17 @@ upperA = {
     es8( ges as, des4 d8) |
     es8( ges bes, ces des es) |
     es4. ~ es4 es8 |
+    \shape #'(
+             ((0 . 0.5) (0 . 1) (0 . 1) (0 . 0.5))
+           ) Tie
     es4. ~ es4 des8 |
+    \shape #'(
+             ((0 . 0.5) (0 . 1) (0 . 1) (0 . 0.5))
+           ) Tie
     es4. ~ es4 es8 |
+    \shape #'(
+             ((0 . 1) (0 . 1.3) (0 . 1.3) (0 . 1))
+           ) Tie
     es4.( ~ es8 bes b) |
 
     \oneVoice
@@ -58,6 +67,7 @@ upperA = {
     <es g,>( <f bes,> <g es>) \voiceOne es( <f d> <g es>) |
     \change Staff = "lower"
     <g, es>8( <as f> <bes g>) <f as,>( <es g,> <d f,>) |
+    \once \override PhrasingSlur.height-limit = #6
     es16^\( g c bes32 \change Staff = "upper" es g16 c
             bes32 es g16 c bes32 es g16 c\) |
     bes8 \oneVoice r8 r
@@ -80,9 +90,13 @@ upperB = {
     r4 as8 ~ as ases4 |
     ges4 bes8 as ases ges! |
     << { \voiceTwo es4. ~ es4 } \\ { \voiceFour as4. as4^> } >> r8 |
-    << { \voiceTwo es4. ~ es4 } \\ { \voiceThree as4.( g4_>) } >> r8 |
-    << { \voiceTwo es4. ~ es4 } \\ { \voiceThree as4.( f4_>) } >> r8 |
-    << { \voiceTwo es8 r r s4 } \\ { \voiceThree as8_( g f es4) } >> r8 |
+    << { \voiceTwo es4. ~ es4 } \\
+       { \voiceThree \once \override Slur.height-limit = #1.0 as4.( 
+         \once \override Script.Y-offset = #-3.1 g4_>) } >> r8 |
+    << { \voiceTwo es4. ~ es4 } \\
+       { \voiceThree \once \override Slur.height-limit = #1.0 as4.( f4_>) } >> r8 |
+    << { \voiceTwo es8 r r s4 } \\
+       { \voiceThree \shape #'((0.3 . 0) (0 . 0.5) (0 . 0.6) (0 . 0)) Slur as8_( g f es4) } >> r8 |
 
     s2.*2 |
     s4. c'4. |
@@ -161,6 +175,7 @@ lower = {
     r8 bes bes, r bes' bes, |
     \voiceTwo
     r8 bes' bes, r bes' bes, |
+    \once \override PhrasingSlur.height-limit = #8
     es16\( bes' es g bes es \change Staff = "upper" g bes es g bes es\) |
     g8 s4 \change Staff = "lower"
     \resetRelativeOctave c
@@ -236,6 +251,14 @@ expressive = {
   s2.*13 |
 }
 
+belowLower = {
+  s2.\sustainOn |
+  s2.*3 |
+  s8 s_\< s4. s8\! |
+  s8_\< s s\! s8_\> s s\! |
+  s2.*34 |
+}
+
 \score {
   \header {
     %piece = "Nálada"
@@ -252,6 +275,9 @@ expressive = {
       \new Voice = "B" { \voiceTwo \upperB }
     >>
     \new Dynamics { \dynamics }
-    \new Staff = "lower" \lower
+    \new Staff = "lower" <<
+      \lower
+      \belowLower
+    >>
   >>
 }
