@@ -1,12 +1,13 @@
-\version "2.18.0"
+\version "2.25.4"
 
 \header {
-     composer = "Sergei Bortkiewicz"
-     title =    "Russische Weisen und Tänze"
-     subtitle = "- III -"
+   composer = "Sergei Bortkiewicz"
+   title =    "Russische Weisen und Tänze"
+   subtitle = "- III -"
 	 opus = "Op.31, No.3"
 }
 
+#(set-default-paper-size "a4")
 #(set-global-staff-size 18)
 #(ly:set-option 'point-and-click #f)
 
