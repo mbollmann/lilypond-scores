@@ -173,9 +173,67 @@ lower = {
 }
 
 dynamics = {
+  s2.\p^\markup { ben tenuto } |
+  s8\< s8 s\> s8\! s4 |
+  s4. s8\< s4 |
+  s8\mf s\> s\! s8 s8\< s |
+  \once \override DynamicText.X-offset = #-0.8
+  s8\f s8\> s\! s4. |
+  s8\p s4 s4 s8\f |
+  s8\> s4 s8\! s4 |
+  s2.\p |
+  s2\p^\markup { espress. } s8\< s\! |
+  s8\< s\> s\! s8\< s s\! |
+  s2.\mf |
+  s2. |
+  s2.\p |
+  s2. |
+  s2.\p |
+  s8\< s8 s\> s8\! s4 |
+  s8\< s4 s8\rfz s4 |
+  s8\> s4 s8\! s4 |
+  \once \override DynamicText.X-offset = #0.2
+  s2.\pp |
+  s8\< s2 s8\! |
+  s8\< s8 s\> s8\! s4 |
+  s8\< s8 s\> s8\! s8\< s8\! |
+  s2. |
+  s4.\> s\! |
+  s2.\pp |
+  s8\< s8 s\> s8\! s4 |
+  s4. s8\< s4 |
+  s8\mf s\> s\! s8 s8\< s |
+  \once \override DynamicText.X-offset = #-0.8
+  s8\f s\< s4. s8\! |
+  s4.\p s8\> s4 |
+  s8\mf s\< s s\! s4 |
+  s8\mf s\> s s\! s4 |
+  s8^\markup { espr. } s2 s8 |
+  s8\< s\> s\! s8\< s s\! |
+  s8\f s\< s4. s8\! |
+  s4.\p s8\> s4 |
+  s8 s\! s2 |
+  \once \override DynamicText.X-offset = #0.6
+  s2.\pp |
+  \once \override DynamicLineSpanner.Y-offset = #2.6
+  s8\> s2 s8\! |
+  s4.
+    \once \override DynamicLineSpanner.Y-offset = #1.6
+    s16\> s s8. s16\! |
+  s2.*2
 }
 
 expressive = {
+  s2.*2 |
+  s4. s^\rfz |
+  s2.*10 |
+  s4. s^\markup { \italic { poco rit. } } |
+  s2.^\markup { \italic { a tempo } } |
+  s2.*11 |
+  s4. s^\rfz |
+  s2. |
+  s8 s^\> s s\! s4 |
+  s2.*13 |
 }
 
 \score {
