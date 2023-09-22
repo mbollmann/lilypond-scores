@@ -1,7 +1,7 @@
 \version "2.25.4"
 
 #(set-default-paper-size "a4")
-#(set-global-staff-size 18)
+#(set-global-staff-size 20)
 #(ly:set-option 'point-and-click #f)
 
 \header {
@@ -48,9 +48,12 @@
 }
 
 \paper {
+  ragged-bottom = ##t
   %ragged-last-bottom = ##f
-  top-margin = 1\cm
-  bottom-margin = 1.5\cm
+  left-margin = 0.5\cm  % was: unset
+  right-margin = 0.5\cm  % was: unset
+  top-margin = 1\cm  % was: 1\cm
+  bottom-margin = 1\cm  % was: 1.5\cm
   footnote-separator-markup = \markup \null
   markup-system-spacing.padding = #2.0
   system-system-spacing.basic-distance = #14
@@ -103,7 +106,7 @@ upperA = {
           d4^-( cis) r8 d( | cis4^- b) } \\
         { <fis ais>2 q4 | <fis b>2 s4 | <e g>2 s4 | <d fis>2 }
     >> r8 b'\( |
-    <fis ais fis'>2 <fis ais>4 | <fis b>\) r r | % [A']
+    <fis ais fis'>2 <fis ais e>4 | <fis b d,>\) r r | % [A']
     a4-.( <gis b>-. <g cis>-.) |
     <fis d'>( <fis a>) <fis a> |
     <g a e'>-.( <g a fis'>-. <g a e'>-.) |
@@ -187,12 +190,12 @@ upperA = {
         <fis fis'>4. <e e'>8 <a, a'> <c c'> |
         <e e'>4. <d d'>8 <c c'> <a a'> |
         <g g'>4.\) b8-.( b-. b-.) | % [C']
-        << { b4.--( a8) a a } \\ { dis,2. } >> |
-        << { a'4.--( g8) g g } \\ { <e b>2. } >> |
-        << { g4.--( f8) f f } \\ { b,2. } >> |
-        << { f'4.--( e8) e e } \\ { <c g>2. } >> |
-        << { e4.--( d8) d( e) } \\ { gis,2. } >> |
-        << { d'4.--( c8) c c } \\ { <a e>2. } >> |
+        << { b4.--( a8) a a } \\ { <dis, a>4 s2 } >> |
+        << { a'4.--( g8) g g } \\ { <e b>4 s2 } >> |
+        << { g4.--( f8) f f } \\ { <b, f>4 s2 } >> |
+        << { f'4.--( e8) e e } \\ { <c g>4 s2 } >> |
+        << { e4.--( d8) d( e) }  { s2. } >> |
+        << { d4.--( c8) c c }  { s2. } >> |
         c4. c8( g a |
         b4.) c8( g a |
         b4.) << { c'8( g a | <b fis dis>4.) c8( g a } \\ { r8 <e c>4 | s4. r8 <e c>4 } >> |
@@ -257,7 +260,7 @@ upperA = {
           d4^-( cis) r8 d( | cis4^- b) } \\
         { <fis ais>2 q4 | <fis b>2 s4 | <e g>2 s4 | <d fis>2 }
     >> r8 b'\( |
-    <fis ais fis'>2 <fis ais>4 | <fis b>\) r r | % [A']
+    <fis ais fis'>2 <fis ais e>4 | <fis b d,>\) r r | 
     a4-.( <gis b>-. <g cis>-.) |
     <fis d'>( <fis a>) <fis a> |
     <g a e'>-.( <g a fis'>-. <g a e'>-.) |
@@ -295,12 +298,14 @@ upperA = {
      <fis' d b>2) \voiceOne <e, g b>4--( | 
      <fis d>2) <e g b>4 | \oneVoice
 
-     <b d fis>4-.\( <d fis gis>-. <d fis ais>-. |
+     \once \override PhrasingSlur.height-limit = #4
+     <b d fis>4-.^\( <d fis gis>-. <d fis ais>-. |
+     \voiceOne
      <d fis b>-. <d' fis>-. <d fis gis>-. | 
-     <d fis ais>-. <d fis b>-. \ottava #1 <d' fis>-. |
+     <d fis ais>-. <d fis b>-. <d fis>-. |
      <d fis gis>-. <d fis ais>-. <d fis b>-. |
      <d fis>-. <d fis gis>-. <d fis ais>-. |
-     <d fis b>-.\) \ottava #0 r r |
+     <d fis b>-.\) \oneVoice r r |
      <fis, b d>4-.\( r r |
      <d fis b>-.\) r r\fermata
   }
@@ -326,8 +331,8 @@ lower = {
     e,4( <e' g cis>) r |
     fis,4( <d' fis b>) r |
     <fis, fis,>4 <fis' ais e'>-.( <fis ais>-.) |
-    b,4 <fis' b d>-.( <fis b d>-.) | % [A']
-    a,4 <g' a cis>-.( <g a cis>-.) |
+    b,4 <d fis b>-.( <d fis b>-.) | % [A']
+    a4 <g' a cis>-.( <g a cis>-.) |
     d <fis a d>-.( <fis a d>-.) |
     d <g a cis>-.( <g a cis>-.) |
     d <fis a d>-.( <fis a d>-.) |
@@ -339,8 +344,8 @@ lower = {
     b, <d fis b>-.( <d fis>-.) |
     b <g' ais e'>-.( <g ais e'>-.) |
     b,( <d fis b>) r |
-    e( <g b e>) r |
-    fis( <b d>) r |
+    e,4( <e' g cis>) r |
+    fis,4( <d' fis b>) r |
     <fis ais e'>2 <fis ais>4 |   %  alt.:  <fis ais e'>2 <fis fis,>4
     <b fis b,>2. |
   }
@@ -394,36 +399,46 @@ lower = {
     \key g \major
     \relative c {
         <a d>4-- <fis' c' d> q |
-        <d g,>4-- <g b d> q |
-        <c, c,>4 <c e a>-. <d d,>-. |
+        <d g,>4-- <d g b> q |
+        <c c,>4 <c e a>-. <d d,>-. |
         <d g,>4 <d g>( <d g b>) |
-        <b b,>4 <g' d' g> <g d' g> |
-        <c, c,>4 <c' e a>( <a c e>) |
-        <d, d,>4 <c' d fis> q |
-        <g g,> <b d g>( <b d>) |
+        <b b,>4 <g' d'> q |
+        <c, c,>4 <a' c> <e c'> |
+        <d d,>4 <fis c'> <d fis c'> |
+        <g g,> <b d g>( <g b d>) |
         << { r4 <g d' g> q } \\ { <d b,>2.--\arpeggio } >> |
         << { r4 <c' e a>( <a c e>) } \\ { <e c,>2.--\arpeggio } >> |
         << { r4 <c' d fis> q } \\ { <fis, d,>2.--\arpeggio } >> |
         <d g,>4 <b' d>( <b d g>) | % [C']
-        <fis, b dis>4-- <dis' a' b> <dis a'> |
-        <e, b'>4-- <b' e g> <b e> |
-        <d, f b>4-- <b' f'> <b d> |
-        <c, g'>4-- <c' e> q |
-        <b, e>4-- <gis' d'> <e gis> |
-        <a, e'>4-- <e' a c> <e a> |
-        <ais, g'>4-- <c' e> q |
+        
+        << { s4 <b dis> q } \\ { <dis, fis,>2. } >> |
+        << { s4 <b' e> q } \\ { <b, e,>2. } >> |
+        << { s4 <b' d> q } \\ { <b, d,>2. } >> |
+        << { s4 <g' c> q } \\ { <g, c,>2. } >> |
+        << { <d' gis>4 <d gis> <e gis> } \\ { <e, b>2. } >> |
+        << { <e' a>4 <e a> q } \\ { <e, a,>2. } >> |
+        << { r4 <e' g> <e g,> } \\ { <g, ais,>2. } >> |
         <b, fis' b>4 b <g' c e>( |
+
+        % <fis, b dis>4-- <dis' a' b> <dis a'> |
+        % <e, b'>4-- <b' e g> <b e> |
+        % <d, f b>4-- <b' f'> <b d> |
+        % <c, g'>4-- <c' e> q |
+        % <b, e>4-- <gis' d'> <e gis> |
+        % <a, e'>4-- <e' a c> <e a> |
+        % <ais, g'>4-- <c' e> q |
+        % <b, fis' b>4 b <g' c e>( |
         <b, fis' b>4) b <g' c e g>( |
         <b, fis' b>4) b <g' c e g>( |
         \alternative {
             \volta 1 {
-                <fis b dis fis>4--) <b b,>2 |
-                <g b d g>4-- <b b,>2 |
-                <fis b dis fis>4-- <b b,>2 |
-                <g b d g>4-- <b b,>2 |
+                <b dis fis>4--) b,2 |
+                <b' d g>4-- b,2 |
+                <b' dis fis>4-- b,2 |
+                <b' d g>4-- b,2 |
             }
             \volta 2 {
-                <b fis b,>2.) |
+                <b' fis b,>2.) |
                 <a dis fis b>2. |
                 <gis e' b'>2. |
                 <g b g'>2. |
@@ -474,8 +489,8 @@ lower = {
     e,4( <e' g cis>) r |
     fis,4( <d' fis b>) r |
     <fis, fis,>4 <fis' ais e'>-.( <fis ais>-.) |
-    b,4 <fis' b d>-.( <fis b d>-.) | % [A']
-    a,4 <g' a cis>-.( <g a cis>-.) |
+    b,4 <d fis b>-.( <d fis b>-.) | % [A']
+    a4 <g' a cis>-.( <g a cis>-.) |
     d <fis a d>-.( <fis a d>-.) |
     d <g a cis>-.( <g a cis>-.) |
     d <fis a d>-.( <fis a d>-.) |
@@ -487,8 +502,8 @@ lower = {
     b, <d fis b>-.( <d fis>-.) |
     b <g' ais e'>-.( <g ais e'>-.) |
     b,( <d fis b>) r |
-    e( <g b e>) r |
-    fis( <b d>) r |
+    e,4( <e' g cis>) r |
+    fis,4( <d' fis b>) r |
     <fis ais e'>2 <fis fis,>4 |
   }
   \section
@@ -513,25 +528,27 @@ lower = {
     << \relative c' { 
         s4. b8 b b | b4. b8 b b | 
         b4. \change Staff = "upper" \voiceTwo b8 b b | 
-        b4. b8 b b | s2. | s4
+        b4. b8 b b |
+        s4 \change Staff = "lower" \voiceOne <d, fis b>4-. q-. |
+        q-. \change Staff = "upper" \voiceTwo <d' fis b>4-. q-. |
+        q-. q-. q-. |
+        q-. q-. q-. |
+        q-. q-. q-. |
+        q-.
         } \\
        \relative c {
          <b d fis>2 <cis e>4( |
          <b d fis>2) <cis e>4( |
          <b d fis>2) \oneVoice <cis e>4( |
-         <b fis b,>2) <cis e>4(
-         <b fis b,>2.)\sustainOn ~ | q2.*1/3\laissezVibrer
+         <fis b, fis>2) <cis e>4( | \voiceTwo
+         <b fis b,>2.)\sustainOn ~ | q ~ | q ~ | q ~ | q ~ |
+         q4\sustainOn
        }
     >>
   }
-  \relative c' {
-    \clef treble <d fis b>4-. q-. |
-    q-. q-. \ottava #1 <d' fis b>4-. |
-    q-. q-. q-. |
-    q-. q-. q-. |
-    q-.\sustainOn \ottava #0 r r |
-    \clef bass
-    <b, fis b,>4-. r r |
+  \relative c {
+    r r | \clef bass
+    <b fis b,>4-. r r |
     <b fis b,>4-. r r\fermata |
   }
   \bar "|."
@@ -561,6 +578,7 @@ dynamics = {
     s4\> s\! s |
     s2.*2 |
 
+    \pageBreak
     % [B]
     s2.\p |
     s2.*7 |
@@ -597,7 +615,6 @@ dynamics = {
                 s2.\p |
                 s2.*2 |
                 s4. s8\< s s\! |
-                \pageBreak
             }
             \volta 2 {
                 s2.-\markup \whiteout { \dynamic p espressivo } |
@@ -637,6 +654,7 @@ dynamics = {
     s2.\p |
     s2. |
     s4\< s\> s\! |
+    \pageBreak
     s2. |
     s4\< s\> s\! |
     s2.*3 |
