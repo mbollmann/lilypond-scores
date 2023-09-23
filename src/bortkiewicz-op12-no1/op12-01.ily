@@ -1,7 +1,5 @@
 \version "2.25.4"
 
-#(set-default-paper-size "a4")
-#(set-global-staff-size 18)
 #(ly:set-option 'point-and-click #f)
 
 \header {
@@ -42,24 +40,6 @@
           "github.com/mbollmann/lilypond-scores."
         }
       }
-    }
-  }
-}
-
-\paper {
-  %ragged-last-bottom = ##f
-  top-margin = 1\cm
-  bottom-margin = 1.5\cm
-  footnote-separator-markup = \markup \null
-  markup-system-spacing.padding = #2.0
-  system-system-spacing.basic-distance = #14
-  staff-staff-spacing.basic-distance = #8
-  staff-staff-spacing.padding = #2.0
-  scoreTitleMarkup = \markup {
-    \fill-line {
-      \null
-      \fontsize #2 \bold \fromproperty #'header:piece
-      \fromproperty #'header:opus
     }
   }
 }
@@ -124,7 +104,8 @@ upperA = {
              ((0 . 0) (0.5 . 1.2) (2.2 . 1.5) (3 . 1))
              ((1 . 1) (1 . 0) (1 . 0.5) (0 . 0))
            ) Slur
-           f'8^( | \break
+           f'8^( |
+    \tag #'print \break
     g,8 f' e4) r \fromBassEnd |
     g4( \fromBass ais,4.) g'8( \fromBassEnd |
     a,8 g' \fromBass fis4) r \fromBassEnd |
@@ -139,6 +120,7 @@ upperA = {
     <a c dis>2.-- \fromBassEnd |
     <f b d>4 <f b e>4.( <f b d>8) |
     <e c'>2 r4 | % [end of page 3 in original score]
+    \tag #'tablet { \volta 1 { \pageBreak } }
     \voiceOne <a c>2 q4 \oneVoice |
     <dis, a' b>2.( |
     <d gis b>4) \acciaccatura d'8 \stemUp <c>4.^( <d, gis>8) \stemNeutral | % HACK for grace note
@@ -151,6 +133,7 @@ upperA = {
     <dis, a' b>2.( |
     <d gis b>4) \acciaccatura d'8 \stemUp <c>4.^( <d, gis>8) \stemNeutral | % HACK as above
     <c e b'>2^( <c e a>8) r8 | % [40] poco più vivo
+    \tag #'tablet { \volta 2 { \pageBreak \autoPageBreaksOff } }
     r4^\markup { \italic { poco più vivo } } <f a>4.->( e8) |
     \voiceOne e8[^\( <f a> <f a> d] d[ <f a> |
     <f a>8 des] des[ <f a> <f a> c]\) \oneVoice |
@@ -175,20 +158,44 @@ upperA = {
     <d bes'> <cis a'> <e cis'> <d bes'> \voiceOne d[ e]\) |
     e8( g f16) \oneVoice r16 r8 \voiceOne f4-- \oneVoice | % [63] vivace
   }
-  \repeat volta 2 {
-  \relative c'' {
-    r8^\markup { \larger \italic { vivace }}_\markup {
-    \center-align \concat { \italic ( \dynamic f \italic ) } } e-. \acciaccatura e8 dis8[( b] d4) |
-    r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
-    r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-    g fis cis dis\) s4 |
-    r8 e''-. \acciaccatura e8 dis8[( b] d4) |
-    r8 cis-. \acciaccatura cis8 c8[( g] b4) |
-    r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-    g fis cis dis e4\)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } } |
+  \tag #'print {
+    \repeat volta 2 {
+    \relative c'' {
+      r8^\markup { \larger \italic { vivace }}_\markup {
+      \center-align \concat { \italic ( \dynamic f \italic ) } } e-. \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis\) s4 |
+      r8 e''-. \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 c8[( g] b4) |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis e4\)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } } |
+    }
+    }
   }
+  \tag #'tablet {
+    \volta 1 { \pageBreak }
+    \relative c'' {
+      r8^\markup { \larger \italic { vivace } }\volta 1 {e-.}\volta 2 {e-.\f} \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis\) s4 |
+      r8 e''-. \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 c8[( g] b4) |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis e4\) |
+      r8 e-. \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis\) s4 |
+      r8 e''-. \acciaccatura e8 dis8[( b] d4) |
+      r8 cis-. \acciaccatura cis8 c8[( g] b4) |
+      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+      g fis cis dis \volta 1 {e4\)} \volta 2 { e4\)\fermata } |
+    }
   } % [71] Tempo I
   } % [end of page 6 in original score]
+  \tag #'tablet { \section }
 
   % exact repeat of 1–24, except for the last bar
   %\bar "||"
@@ -354,7 +361,12 @@ lower = {
     << { e4 s d | s des s } \\
        { e8[_\( <f a> <f a> d] d[ <f a> | <f a> des] des[ <f a> <f a> c]\) }
     >> |
-    f,4-. \change Staff="upper" \voiceTwo <f'' a>4.->(_\markup { \whiteout \italic { rubato assai } } <cis e>8) |
+    f,4-. \change Staff="upper" \voiceTwo 
+    \tag #'tablet {
+      \volta 1 { \once \override TextScript.X-offset = #-6 }
+      \volta 2 { \once \override TextScript.X-offset = #-0.4 }
+    }
+    <f'' a>4.->(_\markup { \whiteout \italic { rubato assai } } <cis e>8) |
     <cis e>8[( <e g>]) <e g>[( <d f>]) \stemDown <d f>[( \stemUp \change Staff="lower" <a cis>]) \oneVoice \stemNeutral |
     bes,4( <f' d'>16) r r8 <bes d>4-- | % [46]
     g,4-. <bes' d>4.->( a8) |
@@ -368,7 +380,11 @@ lower = {
     << { e4 s d | s des s } \\
        { e8[_\( <f a> <f a> d] d[ <f a> | <f a> des] des[ <f a> <f a> c]\) }
     >> | % [end of page 2 in original score]
-    f,4-. \change Staff="upper" \voiceTwo <f'' a>4.->(_\markup { \whiteout \italic { rubato assai } } <cis e>8) |
+    f,4-. \change Staff="upper" \voiceTwo 
+    \tag #'tablet {
+      \volta 1 { \once \override TextScript.X-offset = #-1 }
+    }
+    <f'' a>4.->(_\markup { \whiteout \italic { rubato assai } } <cis e>8) |
     <cis e>8[( <e g>]) <e g>[( <d f>]) \stemDown <d f>[( \stemUp \change Staff="lower" <a cis>]) \oneVoice \stemNeutral |
     bes,4( <f' d'>16) r r8 <bes d>4-- | % [58]
     g,4-. <d' g bes>( <g bes d>) |
@@ -377,23 +393,52 @@ lower = {
     \clef treble <c e bes'>4 r \clef bass c,4( |
     f,4) <c' f a>16 r r8 <a' c f>4-- | % [63] vivace
   }
-  \repeat volta 2 {
-  \relative c' {
-    << { e4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais-. <a fis> ~ <a fis b>-> } \\
-       { e2. ~ e2. ~ e2. ~ e2. } >> | \clef treble
-%    << { e''4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais( <a fis> <b g>) } \\
-%       { e,2. ~ e2. ~ e2. ~ e2. } >> | \clef bass
-    << { e''4-. fis-. f-. | e-. dis-. d-. } \\
-       { e,2. ~ e2. ~ } >> |
-    \clef treble
-    << { cis'4-. c-. b-. | ais( <a fis> 
-         \once \override TextScript.outside-staff-priority = #2500
-         <b g>)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } }_\markup \center-align { \italic "   senza rep." } } \\
-       { e,2. ~ e2. } >> | \clef bass
+  \tag #'print {
+    \repeat volta 2 {
+    \relative c' {
+      << { e4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais-. <a fis> ~ <a fis b>-> } \\
+         { e2. ~ e2. ~ e2. ~ e2. } >> | \clef treble
+  %    << { e''4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais( <a fis> <b g>) } \\
+  %       { e,2. ~ e2. ~ e2. ~ e2. } >> | \clef bass
+      << { e''4-. fis-. f-. | e-. dis-. d-. } \\
+         { e,2. ~ e2. ~ } >> |
+      \clef treble
+      << { cis'4-. c-. b-. | ais( <a fis> 
+           \once \override TextScript.outside-staff-priority = #2500
+           <b g>)^\markup { \halign #-0.3 \concat { "( " \fermata " )" } }_\markup \center-align { \italic "   senza rep." } } \\
+         { e,2. ~ e2. } >> | \clef bass
+    }
+    }
+  }
+  \tag #'tablet {
+    \relative c' {
+      << { e4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais-. <a fis> ~ <a fis b>-> } \\
+         { e2. ~ e2. ~ e2. ~ e2. } >> | \clef treble
+  %    << { e''4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais( <a fis> <b g>) } \\
+  %       { e,2. ~ e2. ~ e2. ~ e2. } >> | \clef bass
+      << { e''4-. fis-. f-. | e-. dis-. d-. } \\
+         { e,2. ~ e2. ~ } >> |
+      \clef treble
+      << { cis'4-. c-. b-. | ais( <a fis> <b g>) } \\
+         { e,2. ~ e2. } >> | \clef bass
+    }
+    \relative c' {
+      << { e4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais-. <a fis> ~ <a fis b>-> } \\
+         { e2. ~ e2. ~ e2. ~ e2. } >> | \clef treble
+  %    << { e''4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais( <a fis> <b g>) } \\
+  %       { e,2. ~ e2. ~ e2. ~ e2. } >> | \clef bass
+      << { e''4-. fis-. f-. | e-. dis-. d-. } \\
+         { e,2. ~ e2. ~ } >> |
+      \clef treble
+      << { cis'4-. c-. b-. | ais( <a fis> 
+           \once \override TextScript.outside-staff-priority = #2500
+           \volta 1 { <b g>) }\volta 2 { <b g>)\fermata } } \\
+         { e,2. ~ e2. } >> | \clef bass
+    }
   }
   }
-  }
-  
+  \tag #'tablet { \section }
+
   % exact repeat of 1–24, except for the last bar
   %\bar "||"
   \relative c {
@@ -466,13 +511,13 @@ dynamics = {
   s4\< s4. s8\! |
   s4 s8\mf s8 s4\p |
   s2.*2 | % [24]
-  \break
+  \tag #'print \break
   \repeat segno 2 {
   s4^\p s2 |
   s2.*3 |
   s4\< s4\!\> s4\! |
   s2.*3 | % [32]
-  s2.*2 | \break
+  s2.*2 | \tag #'print \break
   s2.*2 |
   s4\< s4\!\> s4\! |
   s2.*3 | % [40] poco più vivo
@@ -495,21 +540,42 @@ dynamics = {
   s8\< s s2\! |
   s2 s4\> |
   s4 s8\! s8 s4 | % [63] vivace
-  \once \override Score.Footnote.annotation-line = ##f
-  \footnote \markup { \small { † } } #'(0.1 . 8) \markup { \super † Expressions in braces only on \italic { D.S. } repeat. } Staff.BarLine
-  \repeat volta 2 {
-  s2. | 
-  s2.*5 |
-  \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e (molto) rit. } }
-  \set decrescendoSpanner = #'text
-  s16 s8.\> s2 | s2 s4\! |
+  \tag #'print {
+    \once \override Score.Footnote.annotation-line = ##f
+    \footnote \markup { \small { † } } #'(0.1 . 8) \markup { \super † Expressions in braces only on \italic { D.S. } repeat. } Staff.BarLine
+    \repeat volta 2 {
+      s2. | 
+      s2.*5 |
+      \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e (molto) rit. } }
+      \set decrescendoSpanner = #'text
+      s16 s8.\> s2 | s2 s4\! |
+      \unset decrescendoText
+      \unset decrescendoSpanner
+    }
+  }
+  \tag #'tablet {
+    s2. | 
+    s2.*5 |
+    s4 s2 | s2 s4 |
+    s2. | 
+    s2.*5 |
+    \volta 1 {
+      \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e rit. } }
+    }
+    \volta 2 {
+      \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e molto rit. } }
+    }
+    \set decrescendoSpanner = #'text
+    s4\> s2 | s2 s4\! |
+    \unset decrescendoText
+    \unset decrescendoSpanner
   }
   }
 
-  \unset decrescendoText
-  \unset decrescendoSpanner
-  \pageBreak
-  \autoPageBreaksOff
+  %\tag #'print {
+    \pageBreak
+    \autoPageBreaksOff
+  %}
 
   % exact repeat of 1–24
   \once \override TextScript.Y-offset = #-0.6
@@ -551,7 +617,8 @@ dynamics = {
   s2.\ppp |
   s2. |
   
-  \autoPageBreaksOn
+  \tag #'print  { \autoPageBreaksOn }
+  \tag #'tablet { \autoPageBreaksOn }
 }
 
 music = \new PianoStaff \with {
