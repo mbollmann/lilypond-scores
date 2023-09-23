@@ -65,8 +65,15 @@ fullRest = { R1*3/4 }
 middleUp = { \change Staff = "upper" \voiceTwo }
 middleDown = { \change Staff = "lower" \voiceOne }
 moreLeftSpace = \once \override NoteHead.extra-spacing-width = #'(-4 . 0)
+prallInsideSlur = {
+  \once \override Script.outside-staff-priority = ##f
+  \once \override Script.avoid-slur = #'inside
+}
 
-% TODO: set priority for prall/trill to appear closer to note than slurs
+rit = \markup \italic { rit. }
+ritAssai = \markup \italic { rit. assai }
+pocoRit = \markup \italic { poco rit. }
+atempo = \markup \italic { a tempo }
 
 upper = {
   \global
@@ -106,10 +113,10 @@ upper = {
       e8\( d cis d e d\) |
       cis2 c4 ~ |
       c8\( bes a bes c bes\) |
-      a2 e4 ~ |
+      a2^\rit e4 ~ |
       e8\( e dis e f e\) |
-      e4 r r | % [a tempo]
-      \oneVoice a4.\( bes8\prall a d |
+      e4^\ritAssai r r | % [a tempo]
+      \oneVoice a4.\(^\atempo bes8\prall a d |
       \voiceOne cis8 e4 \moreLeftSpace g8 f e |
       \oneVoice d8 f a a, \acciaccatura c8 bes8 a\) |
       \voiceOne a4.\( g8 e' d\) |
@@ -142,9 +149,9 @@ upper = {
     r4 <a d> <a c> |
     << { r4 <g bes> <e bes' d> } \\ { \voiceThree d2 s4 } >> |
     \oneVoice r4 <f a d> <a d> |
-    << { d4 cis d | e4( g8 f e es) } \\
+    << { d4 cis d | e4(^\pocoRit g8 f e es) } \\
        { <bes g>2. | <bes g>4 a2 } >> | % [a tempo]
-    \voiceOne r4 \oneVoice <f bes d> q |
+    \voiceOne r4^\atempo \oneVoice <f bes d> q |
     r4 <f bes d> q |
     \voiceOne r4 <bes d> q |
     << { d4( cis c) } \\ { \voiceFour a2 a4 } >> |
@@ -159,8 +166,8 @@ upper = {
     \voiceOne e2( d8 c) |
     c8( f a,4 d8 c) |
     bes8\( d g, c, a' g\) |
-    g4.( es8 g f) | % [a tempo]
-    \voiceOne r4 \oneVoice <f bes d> q |
+    g4.(^\pocoRit es8 g f) | % [a tempo]
+    \voiceOne r4^\atempo \oneVoice <f bes d> q |
     r4 <f bes d> q |
     \voiceOne r4 <b d> q |
     r4 <g b d> <a c> |
@@ -175,8 +182,8 @@ upper = {
     \voiceOne e2( d8 c) |
     c8( f a,4 d8 c) |
     bes8\( d g, c, a' g\) |
-    g4.( es8 g f) | % [a tempo]
-    \voiceOne r4 \oneVoice <f bes d> q |
+    g4.(^\pocoRit es8 g f) | % [a tempo]
+    \voiceOne r4^\atempo \oneVoice <f bes d> q |
     r4 <f bes d> q |
     \voiceOne r4 <b d> q |
     r4 <b d> <f c'> |
@@ -189,7 +196,7 @@ upper = {
   \key d \minor
   % This is essentially a "da capo"
   \relative c'' {
-    a4.\( bes8\prall a d |
+    a4.\(^\markup \italic { espress. } bes8\prall a d |
     \voiceOne cis8 e4 \moreLeftSpace g8 f e |
     \oneVoice d8 f a a, \acciaccatura c8 bes8 a\) |
     \voiceOne a4.\( g8 e' d\) |
@@ -218,10 +225,10 @@ upper = {
     e8\( d cis d e d\) |
     cis2 c4 ~ |
     c8\( bes a bes c bes\) |
-    a2 e4 ~ |
+    a2^\markup \italic { poco rall. } e4 ~ |
     e8\( e dis e f e\) |
     e4 r r | % [a tempo]
-    \oneVoice a4.\( bes8\prall a d |
+    \oneVoice a4.\(^\atempo bes8\prall a d |
     cis8 e g, g' f e |
     d8 f a a, \acciaccatura c8 bes8 a\) |
     \voiceOne a4.\( g8 e' d\) |
@@ -243,9 +250,9 @@ upper = {
     c b c d eis f) |
     a8->( g f e d cis) |
     e8->( d a f e d) |
-    << { c'8->([ bes g es c8. bes16]) | bes8( a f' e bes' a) } \\
+    << { c'8->([ bes g es c8. bes16]) | bes8(^\markup \italic { rall. } a f' e bes' a) } \\
        { s4. es4-> s8 | s4. e4-> ~ e8 } >> | % [a tempo]
-    <a d, f,>4 <a f>-.( q-.) |
+    <a d, f,>4^\atempo <a f>-.( q-.) |
     <g e>4( <bes g>) q |
     r4 <a f>-.( q-.) |
     <g e>4( <bes g>) q |
@@ -275,7 +282,7 @@ middle = {
     s2. |
     \relative c'' {
       r4 g( a |
-      bes\prall a g) |
+      \prallInsideSlur bes\prall a g) |
       g2 f4 ~ |
       f8( e dis e f e |
       e2) d4 ~ |
@@ -283,7 +290,7 @@ middle = {
       c2-> b4 ~ |
       b8( gis a bis cis e) |
       g2\( a4 |
-      bes\prall a g\) |
+      \prallInsideSlur bes\prall a g\) |
       g4 fis f ~ |
       f8( e dis e f e) |
       e4 es d ~ |
@@ -307,9 +314,9 @@ middle = {
     \middleUp f4( g d) |
     f2( es4) |
     d4_\( \middleDown c8 bes a g\) |
-    f8_( a d4 f4->) ~ |
-    f4_\( e d |
-    cis \voiceThree c \voiceOne f,\) | % [a tempo]
+    f8_( a_\cresc d4 f4->) ~ |
+    f4_\(_\f e d |
+    cis\> \voiceThree c \voiceOne f,\)\! | % [a tempo]
     \middleUp d'4_\( \middleDown c8 bes a g |
     f4 bes d\) |
     \middleUp f4( g d) |
@@ -329,7 +336,7 @@ middle = {
     f4 bes \middleUp d\) |
     f4( g d) |
     f2( es4) |
-    d4_\( \middleDown c8 bes a g\) |
+    d4_\( c8 bes a \middleDown g\) |
     f8_( bes c4 d4) |
     \middleUp es8_( \middleDown a, \middleUp d4 <c es>) |
     <bes d>4 s2 |
@@ -358,7 +365,7 @@ middle = {
   s2.*11
   \relative c'' {
     r4 g( a |
-    bes\prall a g) |
+    \prallInsideSlur bes\prall a g) |
     g2 f4 ~ |
     f8( e dis e f e |
     e2) d4 ~ |
@@ -366,7 +373,7 @@ middle = {
     c2-> b4 ~ |
     b8( gis a bis cis e) |
     g2\( a4 |
-    bes\prall a g\) |
+    \prallInsideSlur bes\prall a g\) |
     g4 fis f ~ |
     f8( e dis e f e) |
     e4 es d ~ |
@@ -573,8 +580,8 @@ lowerBass = {
     a2. |
     d,2. |
     d'2. |
-    d2 c4 |
-    b2 bes4 |
+    d2 c4-> |
+    b2-> bes4-> |
     \oneVoice
     a4 <a' d f> q |
     q q q |
@@ -668,6 +675,7 @@ lowerBass = {
     bes2. |
     \fullRest
     g2.\(_\markup { \italic { marcato } } |
+    \prallInsideSlur
     gis2-> a4 |
     bes2 es,4\) | % [end of page 4]
     f2 r4 |
@@ -700,8 +708,8 @@ lowerBass = {
   \voiceTwo
   \relative c {
     d2 r4 |
-    a4 <a' cis> q |
-    q q q |
+    a4 <a' cis>_\< q |
+    q_\> q q\! |
     a,2. |
     a2. |
     d,2. |
@@ -766,6 +774,114 @@ lowerBass = {
 }
 
 dynamics = {
+  s2.-\markup { espress. } |
+  s2.*4 |
+  s8\< s s2 |
+  s8\> s s4. s8\! |
+  s2.*2 |
+  s8 s\< s4 s8 s\! |
+  s2.\< |
+  s2.\f |
+  s4. s8\< s4 |
+  s2. |
+  s8\> s s4. s8\! | % [end of page 1]
+  \repeat volta 2 {
+    s4.\> s4 s8\! |
+    s4_\markup { espress. } s2\< |
+    s8 s\> s4 s\! |
+    s2.*11 |
+    s2.-\markup { diminuendo } |
+    s2. |
+    s2.\< | % [a tempo]
+    s2.\p |
+    s2.*4 |
+    s8\< s s2 |
+    s2.\! |
+    s2.*5 |
+    s4. s4.\< |
+    s2 s8 s\! |
+    \alternative {
+      \volta 1 { s8\> s s4. s8\! }
+      \volta 2 { s2 \once \override DynamicText.X-offset = #'-2.0 s4\p }
+    }
+  }
+  s8 s-\markup { dolce } s2 |
+  s2.\< |
+  s2. |
+  s2.\> |
+  s2.\! |
+  s2.*2 |
+  s4 s\> s8 s\! | % [a tempo]
+  s2. |
+  s2.\< |
+  s2. |
+  s2\> s4\! |
+  s2.*5 | % [end of page 3]
+  s2.-\markup { dolcissimo } |
+  s2.*5 |
+  s4\< s8 s4\> s8\! | % [a tempo]
+  s2.*2 |
+  s4\< s s\! |
+  s2\> s4\! |
+  s2.*3 |
+  \override DynamicLineSpanner.Y-offset = #2
+  s8 s\< s4 s8\> s\! \revert DynamicLineSpanner.Y-offset |
+  s2.*7 |
+  s8 s\< s s\> s s\! | % [a tempo]
+  s2.*2 |
+  s4\< s s\! |
+  s4\> s s\! |
+  s2. | % [end of page 4]
+  s2.*3 |
+  % \key d \minor
+  s2.*5 |
+  s2.\< |
+  s2\> s8 s\! |
+  s2.*2 |
+  s4 s\< s8 s\! |
+  s4. s\f |
+  s2. |
+  s4. s\< |
+  s2. |
+  s2.\> |
+  s8 s\! s2 |
+  s8 s2-\markup { espress. } s8 |
+  s2.*7 | % [end of page 5]
+  s2.*5 |
+  s8 s2-\markup { dim. } s8 |
+  s2.
+  s2.\< | % [a tempo]
+  s2.\p
+  \override DynamicLineSpanner.Y-offset = #2
+  s4.\< s4\> s8\! \revert DynamicLineSpanner.Y-offset |
+  s2.*3 |
+  s2.\< |
+  s2\> s8 s\! |
+  s2.*2 |
+  s4.\< s4\> s8\! |
+  s2.\< |
+  s2.\< |
+  s2.\f |
+  s2. | % [end of page 6]
+  s2.-\markup { \italic { sempre } \dynamic f } |
+  s2.\< |
+  s2.\> |
+  s2.\< |
+  s2.\> |
+  s2.\! |
+  s2.-\markup { con forza } |
+  s2. | % [a tempo]
+  s4_\markup { marcato ma piano } s2\pp |
+  s2.*5 |
+  s2.-\markup { \italic { sempre } \dynamic p } |
+  s2.*3 |
+  \once \override DynamicText.X-offset = #'0.4
+  s2.\pp |
+  s2.-\markup \italic { perdendosi } |
+  s2. |
+  \once \override DynamicText.X-offset = #'0.0
+  s2.\pp |
+  s2.
 }
 
 music = \new PianoStaff \with {
