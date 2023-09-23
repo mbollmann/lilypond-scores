@@ -143,7 +143,9 @@ upper = {
           c8 bes a e \acciaccatura e8 g8 f\) |
         }
         \volta 2 {
-          d2 \voiceOne r4 |
+          \tag #'print { d2 }
+          \tag #'tablet { d2\) } 
+          \voiceOne r4 |
         }
       }
     }
@@ -320,8 +322,8 @@ middle = {
   }
   \key bes \major
   \relative c' {
-    \once \override PhrasingSlur.height-limit = #14
-    \once \override PhrasingSlur.eccentricity = #-3
+    \tag #'print { \once \override PhrasingSlur.height-limit = #14 }
+    \tag #'tablet { \once \override PhrasingSlur.height-limit = #10 }
     d4_\( \middleDown c8 bes a g |
     f4 bes d\) |
     \middleUp f4( g d) |
@@ -334,14 +336,22 @@ middle = {
     \once \override PhrasingSlur.height-limit = #1.4
     f4_\(_\f e d |
     cis\> \voiceThree c \voiceOne f,\)\! | % [a tempo]
-    \once \override PhrasingSlur.height-limit = #14
+    \tag #'print { \once \override PhrasingSlur.height-limit = #14 }
+    \tag #'tablet { \once \override PhrasingSlur.height-limit = #24 }
     \once \override PhrasingSlur.eccentricity = #-3
     \middleUp d'4_\( \middleDown c8 bes a g |
     f4 bes d\) |
     \middleUp f4( g d) |
     f4( e es) |
-    \once \override PhrasingSlur.height-limit = #3
-    \once \override PhrasingSlur.eccentricity = #-2.5
+    \tag #'print { 
+      \once \override PhrasingSlur.height-limit = #3
+      \once \override PhrasingSlur.eccentricity = #-2.5
+    }
+    \tag #'tablet {
+      \shape #'(
+             (0.2 . 5) (-1 . -1) (-1 . -1) (0 . 2)
+            ) PhrasingSlur
+    }
     d4_\( c8 bes a \middleDown g |
      f8 bes c4 d\) |
     \once \override Slur.height-limit = #18
@@ -542,7 +552,7 @@ lowerChords = {
   }
   \relative c' {
     r4 <a f'> r |
-    r4 e'( f |
+    r4 \raiseSlur e'( f |
     g f e) |
     r4 <a, d>_( 
       %\change Staff = "upper" \voiceFour 
@@ -552,7 +562,7 @@ lowerChords = {
     r4 <f bes>4_( <bes f'>) |
     r4 <e, a>4_( <a e'>) |
     s2.*2 |
-    s4 e'( f |
+    s4 \raiseSlur e'( f |
     g f e) |
     r4 <a, d>_( 
       %\change Staff = "upper" \voiceFour 
@@ -820,7 +830,9 @@ dynamics = {
     s4.\> s4 s8\! |
     s4-\markup { espress. } s2 |
     s8 s s4 s |
-    s2.*11 |
+    s2.*6 |
+    \tag #'tablet { \break }
+    s2.*5 |
     s2.-\markup { dimin. } |
     s2. |
     s2.\< | % [a tempo]
@@ -836,6 +848,7 @@ dynamics = {
       \volta 2 { s2 \once \override DynamicText.X-offset = #'-2.0 s4\p }
     }
   }
+  \tag #'tablet { \break }
   s8 s-\markup { dolce } s2 |
   s2.\< |
   s2. |
@@ -870,6 +883,7 @@ dynamics = {
   s2. | % [end of page 4]
   s2.*3 |
   % \key d \minor
+  \tag #'tablet { \break }
   s2.*5 |
   s2.\< |
   s2\> s8 s\! |
@@ -877,16 +891,23 @@ dynamics = {
   s4 s\< s8 s\! |
   s4. s\f |
   s2. |
-  s4. s\< |
+  s4.
+  \tag #'tablet { \once \override DynamicLineSpanner.Y-offset = #1 }
+  s4.\< |
   s2. |
   s2.\> |
   s8 s\! s2 |
-  s8 s2-\markup { espress. } s8 |
+  s8
+  \tag #'tablet {
+     \once \override TextScript.X-offset = #'-2.5
+  }
+  s2-\markup { espress. } s8 |
   s2.*7 | % [end of page 5]
   s2.*5 |
   s8 s2-\markup { dim. } s8 |
   s2.
   s2.\< | % [a tempo]
+  \tag #'tablet { \break }
   s2.\p
   s4.\< s4\> s8\! |
   s2.*3 |
@@ -904,12 +925,14 @@ dynamics = {
   s2.\< |
   s2.\> |
   s2.\! |
-  \tag #'print { \once \override TextScript.Y-offset = #-3.5 }
+  \tag #'print  { \once \override TextScript.Y-offset = #-3.5 }
+  \tag #'tablet { \once \override TextScript.Y-offset = #-4 }
   s2.-\markup { con forza } |
   s2. | % [a tempo]
   s4_\markup \whiteout { marcato ma piano } s2\pp |
   s2.*5 |
-  \tag #'print { \once \override TextScript.Y-offset = #-2.5 }
+  \tag #'print  { \once \override TextScript.Y-offset = #-2.5 }
+  \tag #'tablet { \once \override TextScript.Y-offset = #-2.5 }
   s2.-\markup { \italic { sempre } \dynamic p } |
   s2.*3 |
   \once \override DynamicText.X-offset = #'0.4

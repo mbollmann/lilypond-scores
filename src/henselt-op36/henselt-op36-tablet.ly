@@ -1,15 +1,15 @@
 \version "2.25.4"
 
-#(set-default-paper-size "a4")
-#(set-global-staff-size 20)
+#(set-default-paper-size "b5")
+#(set-global-staff-size 17)
 
 \paper {
   ragged-bottom = ##t
   %ragged-last-bottom = ##f
   left-margin = 0.5\cm
-  right-margin = 0.5\cm
-  top-margin = 1\cm
-  bottom-margin = 1\cm
+  right-margin = 0.2\cm
+  top-margin = 0.2\cm
+  bottom-margin = 0.2\cm
   footnote-separator-markup = \markup \null
   markup-system-spacing.padding = #2.0
   system-system-spacing.basic-distance = #14
@@ -28,5 +28,6 @@
 
 \score {
     \keepWithTag #'tablet
+    \unfoldRepeats
     \music
 }
