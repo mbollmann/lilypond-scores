@@ -69,6 +69,9 @@ prallInsideSlur = {
   \once \override Script.outside-staff-priority = ##f
   \once \override Script.avoid-slur = #'inside
 }
+raiseSlur = \shape #'(
+             (0 . 1.5) (0 . -0.5) (0 . -0.5) (0 . 1.5)
+            ) Slur
 
 rit = \markup \italic { rit. }
 ritAssai = \markup \italic { rit. assai }
@@ -81,6 +84,7 @@ upper = {
   %\tempo \markup { "Lento ma non troppo" }
 
   \relative c'' {
+    \once \override PhrasingSlur.height-limit = #6
     a4.\( bes8\prall a d |
     \voiceOne cis8 e4 \moreLeftSpace g8 f e |
     \oneVoice d8 f a a, \acciaccatura c8 bes8 a\) |
@@ -93,7 +97,9 @@ upper = {
     \voiceOne cis8 e4 \moreLeftSpace g8 f e |
     \oneVoice d8 f a d4\) a,8\( ~ |
     a8 fis g cis d e |
-    f4.\) gis,8\( a cis |
+    f4.\) 
+    \once \override PhrasingSlur.height-limit = #7
+    gis,8\( a cis |
     d f a f' e d |
     c bes a e g f\) |
   } % [end of page 1]
@@ -116,7 +122,8 @@ upper = {
       a2^\rit e4 ~ |
       e8\( e dis e f e\) |
       e4^\ritAssai r r | % [a tempo]
-      \oneVoice a4.\(^\atempo bes8\prall a d |
+      \oneVoice \once \override PhrasingSlur.height-limit = #6
+      a4.\(^\atempo bes8\prall a d |
       \voiceOne cis8 e4 \moreLeftSpace g8 f e |
       \oneVoice d8 f a a, \acciaccatura c8 bes8 a\) |
       \voiceOne a4.\( g8 e' d\) |
@@ -128,7 +135,8 @@ upper = {
       \voiceOne cis8 e g, g' f e\) |
       \oneVoice d8\( f a d\) r a,8\( ~ |
       a8 fis g cis d e |
-      f4.\) gis,8\( a cis |
+      f4.\) \once \override PhrasingSlur.height-limit = #7
+      gis,8\( a cis |
       d f a f' e d |
       \alternative {
         \volta 1 {
@@ -228,10 +236,13 @@ upper = {
     a2^\markup \italic { poco rall. } e4 ~ |
     e8\( e dis e f e\) |
     e4 r r | % [a tempo]
-    \oneVoice a4.\(^\atempo bes8\prall a d |
+    \once \override PhrasingSlur.height-limit = #6
+    \oneVoice a4.\(^\atempo \prallInsideSlur bes8\prall a d |
     cis8 e g, g' f e |
     d8 f a a, \acciaccatura c8 bes8 a\) |
     \voiceOne a4.\( g8 e' d\) |
+    \once \override PhrasingSlur.height-limit = #5
+    \once \override PhrasingSlur.eccentricity = #-0.5
     d4.\( c8\prall b c |
     \oneVoice e8 g e' d c bes\) |
     bes4.\( a8 g e |
@@ -309,20 +320,31 @@ middle = {
   }
   \key bes \major
   \relative c' {
+    \once \override PhrasingSlur.height-limit = #14
+    \once \override PhrasingSlur.eccentricity = #-3
     d4_\( \middleDown c8 bes a g |
     f4 bes d\) |
     \middleUp f4( g d) |
     f2( es4) |
+    \once \override PhrasingSlur.height-limit = #10
+    \once \override PhrasingSlur.eccentricity = #-0.5
     d4_\( \middleDown c8 bes a g\) |
+    \once \override Slur.height-limit = #1.4
     f8_( a_\cresc d4 f4->) ~ |
+    \once \override PhrasingSlur.height-limit = #1.4
     f4_\(_\f e d |
     cis\> \voiceThree c \voiceOne f,\)\! | % [a tempo]
+    \once \override PhrasingSlur.height-limit = #14
+    \once \override PhrasingSlur.eccentricity = #-3
     \middleUp d'4_\( \middleDown c8 bes a g |
     f4 bes d\) |
     \middleUp f4( g d) |
     f4( e es) |
+    \once \override PhrasingSlur.height-limit = #3
+    \once \override PhrasingSlur.eccentricity = #-2.5
     d4_\( c8 bes a \middleDown g |
      f8 bes c4 d\) |
+    \once \override Slur.height-limit = #18
     \middleUp es8_( \middleDown a, \middleUp d4 c) |
     bes4 s2 |
     <e g>2. | % [end of page 3]
@@ -332,7 +354,10 @@ middle = {
     f2 s4 |
     s2 e4 |
     << { \voiceFour es2 s4 } \\ { \voiceTwo a,4. s4. } >> | % [a tempo]
-    \voiceTwo d4_\( \middleDown c8 bes a g |
+    \once \override PhrasingSlur.height-limit = #16
+    \once \override PhrasingSlur.ratio = #0.36
+    \once \override PhrasingSlur.eccentricity = #1.8
+    \voiceTwo d4_\( c8 bes a \middleDown  g |
     f4 bes \middleUp d\) |
     f4( g d) |
     f2( es4) |
@@ -351,7 +376,9 @@ middle = {
     f4 bes \middleUp d\) |
     f4( g d) |
     f2( es4) |
-    d4_\( c8 bes a \middleDown g | % [end of page 4]
+    \once \override PhrasingSlur.height-limit = #6
+    \once \override PhrasingSlur.eccentricity = #-1
+    d4\( c8 bes a \middleDown g | % [end of page 4]
     f8 bes c4 d\) |
     \middleUp <es g>8_( \middleDown a, \middleUp <d f>4 <c es>) |
     <bes d>2 s4 |
@@ -379,6 +406,9 @@ middle = {
     e4 es d ~ |
     d8( cis bis cis d c) |
     c2 b4 |
+    \shape #'(
+             (0.6 . 0) (0.4 . 0) (0 . 0) (0 . 0)
+            ) Slur
     bes8^( a cis e bes' a) | % [a tempo]
     s2.*3 |
     s2 f4 ~ |
@@ -427,7 +457,7 @@ lowerChords = {
   \repeat volta 2 {
     \relative c' {
       r4 <a f'> r |
-      r4 e'( f |
+      r4 \raiseSlur e'( f |
       g f e) |
       r4 <a, d>_( 
         %\change Staff = "upper" \voiceFour 
@@ -437,7 +467,7 @@ lowerChords = {
       r4 <f bes>4_( <bes f'>) |
       r4 <e, a>4_( <a e'>) |
       s2.*2 |
-      s4 e'( f |
+      s4 \raiseSlur e'( f |
       g f e) |
       r4 <a, d>_( 
         %\change Staff = "upper" \voiceFour 
@@ -591,8 +621,8 @@ lowerBass = {
     \voiceTwo
     \relative c {
       d2 r4 |
-      a4 <a' cis> q |
-      q q q |
+      a4 <a' cis>_\< q |
+      q_\> q q\! |
       a,2. |
       a2. |
       d,2. |
@@ -777,9 +807,10 @@ dynamics = {
   s2.-\markup { espress. } |
   s2.*4 |
   s8\< s s2 |
-  s8\> s s4. s8\! |
+  s8\> s s4. s8\! \revert DynamicLineSpanner.Y-offset |
   s2.*2 |
-  s8 s\< s4 s8 s\! |
+  \override DynamicLineSpanner.Y-offset = #-3
+  s8 s\< s4 s8 s\! \revert DynamicLineSpanner.Y-offset |
   s2.\< |
   s2.\f |
   s4. s8\< s4 |
@@ -787,10 +818,10 @@ dynamics = {
   s8\> s s4. s8\! | % [end of page 1]
   \repeat volta 2 {
     s4.\> s4 s8\! |
-    s4_\markup { espress. } s2\< |
-    s8 s\> s4 s\! |
+    s4-\markup { espress. } s2 |
+    s8 s s4 s |
     s2.*11 |
-    s2.-\markup { diminuendo } |
+    s2.-\markup { dimin. } |
     s2. |
     s2.\< | % [a tempo]
     s2.\p |
@@ -811,12 +842,17 @@ dynamics = {
   s2.\> |
   s2.\! |
   s2.*2 |
-  s4 s\> s8 s\! | % [a tempo]
+  s4 s8 
+  \tag #'print { \override DynamicLineSpanner.Y-offset = #1.5 } 
+  s\> s s\! | % [a tempo]
   s2. |
   s2.\< |
   s2. |
+  \tag #'print { \revert DynamicLineSpanner.Y-offset }
   s2\> s4\! |
   s2.*5 | % [end of page 3]
+  \tag #'print { \pageBreak }
+  \tag #'print { \once \override TextScript.Y-offset = #'0.5 }
   s2.-\markup { dolcissimo } |
   s2.*5 |
   s4\< s8 s4\> s8\! | % [a tempo]
@@ -852,8 +888,7 @@ dynamics = {
   s2.
   s2.\< | % [a tempo]
   s2.\p
-  \override DynamicLineSpanner.Y-offset = #2
-  s4.\< s4\> s8\! \revert DynamicLineSpanner.Y-offset |
+  s4.\< s4\> s8\! |
   s2.*3 |
   s2.\< |
   s2\> s8 s\! |
@@ -869,10 +904,12 @@ dynamics = {
   s2.\< |
   s2.\> |
   s2.\! |
+  \tag #'print { \once \override TextScript.Y-offset = #-3.5 }
   s2.-\markup { con forza } |
   s2. | % [a tempo]
-  s4_\markup { marcato ma piano } s2\pp |
+  s4_\markup \whiteout { marcato ma piano } s2\pp |
   s2.*5 |
+  \tag #'print { \once \override TextScript.Y-offset = #-2.5 }
   s2.-\markup { \italic { sempre } \dynamic p } |
   s2.*3 |
   \once \override DynamicText.X-offset = #'0.4
