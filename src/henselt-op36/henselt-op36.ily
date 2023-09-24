@@ -105,7 +105,9 @@ upper = {
   } % [end of page 1]
   \repeat volta 2 {
     \relative c'' {
-      d4. a8( \acciaccatura c8 bes8 a) |
+      \tag #'print { d4. }
+      \tag #'tablet { \volta 1 { d4. }\volta 2 { d4.\) } }
+      a8( \acciaccatura c8 bes8 a) |
       \voiceOne \acciaccatura a8 e'2. ~ |
       e2 f8\( e |
       e8 d cis d e d\) |
@@ -138,18 +140,10 @@ upper = {
       f4.\) \once \override PhrasingSlur.height-limit = #7
       gis,8\( a cis |
       d f a f' e d |
-      \alternative {
-        \volta 1 {
-          c8 bes a e \acciaccatura e8 g8 f\) |
-        }
-        \volta 2 {
-          \tag #'print { d2 }
-          \tag #'tablet { d2\) } 
-          \voiceOne r4 |
-        }
-      }
+      c8 bes a e \acciaccatura e8 g8 f |
     }
   }
+  d''2\) \voiceOne r4 |
   \section
   \key bes \major
   \relative c' {
@@ -260,12 +254,12 @@ upper = {
     c8 bes a g f e\) |
     d( cis d e fis g) |
     bes8( a g fis es d |
-    c b c d eis f) |
+    c b c d e f) |
     a8->( g f e d cis) |
     e8->( d a f e d) |
     << { c'8->([ bes g es c8. bes16]) | bes8(^\markup \italic { rall. } a f' e bes' a) } \\
        { s4. es4-> s8 | s4. e4-> ~ e8 } >> | % [a tempo]
-    <a d, f,>4^\atempo <a f>-.( q-.) |
+    <a d,>4^\atempo <a f>-.( q-.) |
     <g e>4( <bes g>) q |
     r4 <a f>-.( q-.) |
     <g e>4( <bes g>) q |
@@ -313,13 +307,10 @@ middle = {
       s2.*3 |
       s2 f4 |
       e2 s4 |
-      s2.*9 |
-      \alternative {
-        \volta 1 { s2. }
-        \volta 2 { s2 f,4 }
-      } |
+      s2.*10 |
     }
   }
+  s2 f4
   \key bes \major
   \relative c' {
     \tag #'print { \once \override PhrasingSlur.height-limit = #14 }
@@ -428,7 +419,7 @@ middle = {
   s2.*8 |
   \middleDown
   \relative c {
-    a4. bes8\(\prall a d |
+    \voiceThree a4. \voiceOne bes8\(\prall a d |
     bes d g, g' f e\) |
     a,8( d f a) a,4 |
     bes4.( g8 e' d) |
@@ -475,7 +466,7 @@ lowerChords = {
         %\change Staff = "lower" \voiceOne 
       r4 <c a'>_( <a c>) |
       r4 <f bes>4_( <bes f'>) |
-      r4 <e, a>4_( <a e'>) |
+      r4 <e, a>4_( <a \parenthesize e'>) |
       s2.*2 |
       s4 \raiseSlur e'( f |
       g f e) |
@@ -485,7 +476,7 @@ lowerChords = {
         %\change Staff = "lower" \voiceOne 
       r4 <a a'>_( <e a>) |
       r4 <f bes>_( <bes f'>) |
-      r4 <e, a>_( <a e'>) |
+      r4 <e, a>_( <a \parenthesize e'>) |
       r4 <gis d'>_( <d' gis>) |
       s2. | % [a tempo]
       r4 f2 |
@@ -501,13 +492,10 @@ lowerChords = {
         %\change Staff = "upper" << { \voiceTwo bes'4->( a8 g) } \\ { \voiceFour cis,2 } >> \change Staff = "lower" 
       r4 <f a,>2 |
       r4 <d g,>2 |
-      s2.*2 |
-      \alternative {
-        \volta 1 { s2. }
-        \volta 2 { r4 <f a,>4 s4 }
-      }
+      s2.*3 |
     }
   }
+  \relative c' { r4 <f a,>4 s4 }
   \key bes \major
   s2.*15 |
   \relative c { 
@@ -560,7 +548,7 @@ lowerChords = {
       %\change Staff = "lower" \voiceOne 
     r4 <c a'>_( <a c>) |
     r4 <f bes>4_( <bes f'>) |
-    r4 <e, a>4_( <a e'>) |
+    r4 <e, a>4_( <a \parenthesize e'>) |
     s2.*2 |
     s4 \raiseSlur e'( f |
     g f e) |
@@ -570,7 +558,7 @@ lowerChords = {
       %\change Staff = "lower" \voiceOne 
     r4 <a a'>_( <e a>) |
     r4 <f bes>_( <bes f'>) |
-    r4 <e, a>_( <a e'>) |
+    r4 <e, a>_( <a \parenthesize e'>) |
     r4 <gis d'>_( <d' gis>) |
     s2. | % [a tempo]
     r4 f2 |
@@ -663,12 +651,10 @@ lowerBass = {
       \oneVoice
       a4 <a' d f> q |
       q q q |
-      \alternative {
-        \volta 1 { a,4 <a' cis g'> q }
-        \volta 2 { \voiceTwo d,,2 s4 }
-      } |
+      a,4 <a' cis g'> q |
     }
   }
+  \voiceTwo d,2 s4
   \section
   \key bes \major
   \relative c { 
@@ -793,7 +779,7 @@ lowerBass = {
     <g, g,>4 <g' bes> r |
     <a, a,>4 <g' cis> r |
     \voiceTwo
-    d,2. |
+    << { f4 s2 } \\ { d,2. } >> |
     s2. %\fullRest |
     d2. |
     s2. %\fullRest |
@@ -827,11 +813,15 @@ dynamics = {
   s2. |
   s8\> s s4. s8\! | % [end of page 1]
   \repeat volta 2 {
-    s4.\> s4 s8\! |
+    \tag #'tablet {
+      \volta 1 { s4.\> s4 s8\! | }
+      \volta 2 { s2. | }
+    }
+    \tag #'print { s4.\> s4 s8\! | }
     s4-\markup { espress. } s2 |
     s8 s s4 s |
     s2.*6 |
-    \tag #'tablet { \break }
+    \tag #'tablet { \pageBreak }
     s2.*5 |
     s2.-\markup { dimin. } |
     s2. |
@@ -843,11 +833,9 @@ dynamics = {
     s2.*5 |
     s4. s4.\< |
     s2 s8 s\! |
-    \alternative {
-      \volta 1 { s8\> s s4. s8\! }
-      \volta 2 { s2 \once \override DynamicText.X-offset = #'-2.0 s4\p }
-    }
+    s8\> s s4. s8\!
   }
+  s2 \once \override DynamicText.X-offset = #'-2.0 s4\p
   \tag #'tablet { \break }
   s8 s-\markup { dolce } s2 |
   s2.\< |
@@ -907,7 +895,7 @@ dynamics = {
   s8 s2-\markup { dim. } s8 |
   s2.
   s2.\< | % [a tempo]
-  \tag #'tablet { \break }
+  \tag #'tablet { \pageBreak }
   s2.\p
   s4.\< s4\> s8\! |
   s2.*3 |
@@ -929,7 +917,7 @@ dynamics = {
   \tag #'tablet { \once \override TextScript.Y-offset = #-4 }
   s2.-\markup { con forza } |
   s2. | % [a tempo]
-  s4_\markup \whiteout { marcato ma piano } s2\pp |
+  s8_\markup \whiteout { marcato ma piano } s\pp s2 |
   s2.*5 |
   \tag #'print  { \once \override TextScript.Y-offset = #-2.5 }
   \tag #'tablet { \once \override TextScript.Y-offset = #-2.5 }
