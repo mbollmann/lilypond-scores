@@ -183,15 +183,19 @@ upperA = {
       r8 e''-. \acciaccatura e8 dis8[( b] d4) |
       r8 cis-. \acciaccatura cis8 c8[( g] b4) |
       r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-      g fis cis dis e4\) |
-      r8 e-. \acciaccatura e8 dis8[( b] d4) |
-      r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
-      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-      g fis cis dis\) s4 |
-      r8 e''-. \acciaccatura e8 dis8[( b] d4) |
-      r8 cis-. \acciaccatura cis8 c8[( g] b4) |
-      r8 bes-. \acciaccatura bes8 a8[\( e g e] |
-      g fis cis dis \volta 1 {e4\)} \volta 2 { e4\)\fermata } |
+      g fis cis dis
+      \volta 1 {
+        e4\) |
+        r8 e-. \acciaccatura e8 dis8[( b] d4) |
+        r8 cis-. \acciaccatura cis8 \stemDown c8[( g] b4) \stemNeutral |
+        r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+        g fis cis dis\) s4 |
+        r8 e''-. \acciaccatura e8 dis8[( b] d4) |
+        r8 cis-. \acciaccatura cis8 c8[( g] b4) |
+        r8 bes-. \acciaccatura bes8 a8[\( e g e] |
+        g fis cis dis e4\) |
+      }
+      \volta 2 { e4\)\fermata | }
     }
   } % [71] Tempo I
   } % [end of page 6 in original score]
@@ -282,7 +286,11 @@ upperB = {
     s2.*3 |
     s2 bes'4 |
     bes4( a16) s8. a4-- | % [63] vivace
-    \repeat volta 2 { s2.*8 }
+    \tag #'print { \repeat volta 2 { s2.*8 } }
+    \tag #'tablet { 
+      s2.*8
+      \volta 1 { s2.*8 }
+    }
   } % [71] Tempo I
   }
 
@@ -419,10 +427,12 @@ lower = {
       << { e''4-. fis-. f-. | e-. dis-. d-. } \\
          { e,2. ~ e2. ~ } >> |
       \clef treble
-      << { cis'4-. c-. b-. | ais( <a fis> <b g>) } \\
+      << { cis'4-. c-. b-. | ais( <a fis>
+           \once \override TextScript.outside-staff-priority = #2500
+           \volta 1 { <b g>) }\volta 2 { <b g>)\fermata } } \\
          { e,2. ~ e2. } >> | \clef bass
     }
-    \relative c' {
+    \volta 1 { \relative c' {
       << { e4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais-. <a fis> ~ <a fis b>-> } \\
          { e2. ~ e2. ~ e2. ~ e2. } >> | \clef treble
   %    << { e''4-. fis-. f-. | e-. dis-. d-. | cis-. c-. b-. | ais( <a fis> <b g>) } \\
@@ -430,11 +440,9 @@ lower = {
       << { e''4-. fis-. f-. | e-. dis-. d-. } \\
          { e,2. ~ e2. ~ } >> |
       \clef treble
-      << { cis'4-. c-. b-. | ais( <a fis> 
-           \once \override TextScript.outside-staff-priority = #2500
-           \volta 1 { <b g>) }\volta 2 { <b g>)\fermata } } \\
+      << { cis'4-. c-. b-. | ais( <a fis> <b g>) } \\
          { e,2. ~ e2. } >> | \clef bass
-    }
+    } }
   }
   }
   \tag #'tablet { \section }
@@ -556,19 +564,23 @@ dynamics = {
   \tag #'tablet {
     s2. | 
     s2.*5 |
-    s4 s2 | s2 s4 |
-    s2. | 
-    s2.*5 |
-    \volta 1 {
+    \volta 1 { 
+      s2.*2 |
+      s2. | 
+      s2.*5 |
       \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e rit. } }
+      \set decrescendoSpanner = #'text
+      s4\> s2 | s2 s4\! |
+      \unset decrescendoText
+      \unset decrescendoSpanner
     }
     \volta 2 {
       \set decrescendoText = \markup { \smaller \whiteout \italic { dim. e molto rit. } }
+      \set decrescendoSpanner = #'text
+      s4\> s2 | s2 s4\! |
+      \unset decrescendoText
+      \unset decrescendoSpanner
     }
-    \set decrescendoSpanner = #'text
-    s4\> s2 | s2 s4\! |
-    \unset decrescendoText
-    \unset decrescendoSpanner
   }
   }
 
