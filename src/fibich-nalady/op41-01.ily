@@ -148,6 +148,7 @@ lower = {
 }
 
 dynamics = {
+  \autoBreaksOff
   s8\p\< s s2 |
   s4 s8 s\! s4\pp |
   \once \override DynamicText.extra-offset = #'(1.4 . 0.7)
@@ -162,22 +163,22 @@ dynamics = {
   \once \override DynamicText.Y-offset = #0.5
   s8\mf s
   \once \override DynamicLineSpanner.Y-offset = #1.4
-  s\> s16 s\! |
+  s\> s16 s\! | \break
   \once \override DynamicText.extra-offset = #'(0.6 . 1.6)
   s2.\p |
   \dynamicTextNudgeRight s\pp |
   s8\p\< s s2 |
-  s8 s32\! s s16\> s8 s\! s16 s\< s8 |
+  s16 s\! s s16\> s8 s\! s16 s\< s8 |
   s8. s16\! s4 s8\> s16 s\! |
   s2. |
-  s8\< s s2 |
+  s8\< s s2 | \break
   s16 s\! s s\> s8. s16\! s4 |
   s8\< s4 s16\! s s8\> s16 s\! |
   s16\< s\! s\> s\! s2 |
   s8\< s4. s8. s16\! |
   s2 s4\pp |
   \dynamicTextNudgeRight s2\ppp \dynamicTextNudgeRight s4\pp |
-  \dynamicTextNudgeRight s2.\ppp |
+  \dynamicTextNudgeRight s2.\ppp | \break
   s8\mf\< s s4. s8\! |
   s8\f\> s16 s\! s4 s8\< s |
   s16 s\! s s\> s8. s16\! s4 |
@@ -185,7 +186,7 @@ dynamics = {
   s16\< s\! s\> s\! s8
   \once \override DynamicText.Y-offset = #0.4
   s4.\pp |
-  s2. |
+  s2. | \break
   s4. s8\< s s\! |
   s8\f s\> s4 s8. s16\! |
   \once \override DynamicLineSpanner.Y-offset = #1.0
@@ -199,6 +200,7 @@ dynamics = {
   \once \override DynamicLineSpanner.Y-offset = #1.4
   s\> s8\! s8\> s s16 s\! |
   \dynamicTextNudgeRight s2.\ppp |
+  \autoBreaksOn
 }
 
 expressive = {
