@@ -20,7 +20,8 @@ parallelNotesB = {
   \grace { ges16 as c } f8( es16 c) \grace { f,16 as c } es8( des) |
   \clef treble
   \grace { bes16 des fes } as8( ges)
-  \key cis \minor
+                                %\key cis \minor
+  \key a \minor
   \grace { a,16 b dis } gis16( fis e\prall dis) | %% b natural is b sharp in treble in the OS
   \grace { d16 e gis } cis8\( b16 gis \grace { cis,16 e gis } b8 a\) |
   \grace { b,16 d f } a8( gis) \grace { d16 f a } c8( b) |
