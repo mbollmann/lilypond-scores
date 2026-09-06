@@ -32,23 +32,23 @@
   title = "Capriccio"
   composer = \markup { { Fanny Hensel } }
   opus = "H.349"
-  % copyright = \markup {
-  %   \pad-to-box #'(0 . 0) #'(0 . 3)
-  %   \line {
-  %     "Typeset in 2023 by"
-  %     \with-color "dodgerblue" {
-  %       \with-url "https://github.com/mbollmann/lilypond-scores/" {
-  %         "Marcel Bollmann."
-  %       }
-  %     }
-  %     "Released under"
-  %     \with-color "dodgerblue" {
-  %       \with-url "https://creativecommons.org/licenses/by/4.0/" {
-  %         "CC-BY 4.0."
-  %       }
-  %     }
-  %   }
-  % }
+  %copyright = \markup {
+  %  \pad-to-box #'(0 . 0) #'(0 . 3)
+  %  \line {
+  %     "Typeset in 2026 by"
+  %    \with-color "dodgerblue" {
+  %      \with-url "https://github.com/mbollmann/lilypond-scores/" {
+  %        "Marcel Bollmann."
+  %      }
+  %    }
+  %    "Released under"
+  %    \with-color "dodgerblue" {
+  %      \with-url "https://creativecommons.org/licenses/by/4.0/" {
+  %        "CC-BY 4.0."
+  %      }
+  %    }
+  %  }
+  %}
   tagline = \markup {
     \pad-to-box #'(0 . 0) #'(0 . 3)
     \line {
@@ -64,6 +64,32 @@
       \with-color "dodgerblue" {
         \with-url "https://github.com/mbollmann/lilypond-scores/" {
           "github.com/mbollmann/lilypond-scores."
+        }
+      }
+    }
+  }
+}
+
+\markup {
+  \footnote "" {
+    \pad-to-box #'(0 . 0) #'(0 . 3)
+    \wordwrap {
+      "This typeset is based on the"
+      \concat {
+        \with-color "dodgerblue" {
+          \with-url
+          "https://imslp.org/wiki/Special:ReverseLookup/1048163"
+          "manuscript"
+        }
+        " and "
+        \with-color "red" {
+          "has not been proofread yet."
+        }
+        " Released under "
+        \with-color "dodgerblue" {
+          \with-url "https://creativecommons.org/licenses/by/4.0/" {
+            "CC-BY 4.0."
+          }
         }
       }
     }
@@ -719,7 +745,6 @@ music = \new PianoStaff \with {
     >>
     \new Dynamics { \pedal }
   >>
-
 
 \score {
     \keepWithTag #'(print original)
