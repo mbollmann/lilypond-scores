@@ -7,8 +7,8 @@
 \header {
   title = "Adagio"
   subtitle = "from Oboe Concerto in D minor"
-  composer = \markup { \caps { Alessandro Marcello } }
-  arranger = \markup { arr. \caps { J.S. Bach, } \caps { BWV 974 } }
+  composer = \markup { { Alessandro Marcello } }
+  arranger = \markup { arr. { J.S. Bach, } \caps { bwv 974 } }
   %opus = "Op.27"
   %copyright = \markup {
   %  \pad-to-box #'(0 . 0) #'(0 . 3)
@@ -105,7 +105,7 @@ upper = {
     e4\prall r16 e f a32 g a( f16 g32 e16.\prall f32) |
     \appoggiatura { e16 } d4 r32 d( e f g f e f) g16( f32 e f16 g) |
     << { cis,2\prall r4 } \\ { r4 <a g e>8 q q q } >> |
-    << { fis'8[( a]) } \\ { <a, c>8 r } >> a'8( f) c16( a' f c) |
+    << { fis'8[( a]) } \\ { <a, c>8 r } >> a'8( fis) c16( a' fis c) |
     c4( bes)\prall r |
     gis'16( b gis a) b( gis e b') gis( e d b') |
     d,8( c) f( e) e( f)\mordent ~ |
